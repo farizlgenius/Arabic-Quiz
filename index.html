@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arabic Quiz App (1-25)</title>
+    <title>Arabic Quiz App (26-50)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #fcf8f2;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,23 +19,23 @@
             background-color: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             max-width: 500px;
             width: 100%;
             text-align: center;
             margin: auto;
         }
-        h2 { color: #2c3e50; margin-bottom: 5px; }
+        h2 { color: #2c3e50; margin-bottom: 5px; font-size: 22px; }
         .progress { color: #7f8c8d; font-size: 14px; margin-bottom: 25px; }
         .question-box {
-            background-color: #f8f9fa;
+            background-color: #fdfaf6;
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
-            border-left: 5px solid #3498db;
+            border-left: 5px solid #d35400;
         }
-        .type-label { font-size: 14px; color: #3498db; font-weight: bold; text-transform: uppercase; }
-        .word { font-size: 32px; font-weight: bold; margin: 15px 0; color: #2c3e50; direction: rtl; }
+        .type-label { font-size: 14px; color: #e67e22; font-weight: bold; text-transform: uppercase; }
+        .word { font-size: 36px; font-weight: bold; margin: 15px 0; color: #2c3e50; direction: rtl; }
         .input-answer {
             width: 100%;
             padding: 12px;
@@ -47,7 +47,7 @@
             text-align: center;
         }
         .btn {
-            background-color: #2ecc71;
+            background-color: #e67e22;
             color: white;
             border: none;
             padding: 12px 25px;
@@ -58,7 +58,7 @@
             font-weight: bold;
             transition: background 0.2s;
         }
-        .btn:hover { background-color: #27ae60; }
+        .btn:hover { background-color: #d35400; }
         .btn-secondary { background-color: #3498db; margin-top: 10px; }
         .btn-secondary:hover { background-color: #2980b9; }
         .result {
@@ -76,13 +76,13 @@
 <body>
 
 <div class="quiz-container">
-    <h2>Arabic Quiz (คำที่ 1-25)</h2>
+    <h2>Arabic Quiz (คำที่ 26-50)</h2>
     <div class="progress" id="progress">ข้อที่ 1/10</div>
 
     <div id="quiz-box">
         <div class="question-box">
             <div class="type-label" id="direction-label">แปลเป็นภาษาไทย</div>
-            <div class="word" id="question-word">نَامَ</div>
+            <div class="word" id="question-word">فَتَحَ</div>
         </div>
         <input type="text" id="user-answer" class="input-answer" placeholder="พิมพ์คำตอบที่นี่ (หรือกดตรวจเพื่อดูเฉลย)" autocomplete="off">
         <button class="btn" id="action-btn" onclick="checkAnswer()">ตรวจคำตอบ</button>
@@ -96,46 +96,45 @@
 </div>
 
 <script>
-    // ข้อมูลคำศัพท์ลำดับที่ 1-25 จาก image.png และ image_2.png
+    // ข้อมูลคำศัพท์ลำดับที่ 26-50 จากรูปภาพจริงที่ส่งมาล่าสุด
     const vocabData = [
-        { id: 1, ar: "نَامَ", th: "นอนหลับ" },
-        { id: 2, ar: "غَسَلَ", th: "ล้าง" },
-        { id: 3, ar: "بَالَ", th: "ปัสสาวะ" },
-        { id: 4, ar: "كَانَ", th: "เป็น, คือ" },
-        { id: 5, ar: "صَارَ", th: "กลายเป็น" },
-        { id: 6, ar: "أَكَلَ", th: "กิน" },
-        { id: 7, ar: "شَرِبَ", th: "ดื่ม" },
-        { id: 8, ar: "بَلَعَ", th: "กลืน" },
-        { id: 9, ar: "شَمَّ", th: "ดม" },
-        { id: 10, ar: "سَاقَ", th: "ขับขยานพาหนะ" },
-        { id: 11, ar: "رَكِبَ", th: "โดยสาร" },
-        { id: 12, ar: "وَقَفَ", th: "หยุด, ยืน" },
-        { id: 13, ar: "قَامَ", th: "ลุกยืน" },
-        { id: 14, ar: "جَلَسَ", th: "นั่ง" },
-        { id: 15, ar: "سَارَ", th: "เดิน, เล่น" },
-        { id: 16, ar: "مَشَى", th: "เดิน" },
-        { id: 17, ar: "جَرَى", th: "วิ่ง" },
-        { id: 18, ar: "سَالَ", th: "ไหล, ทะลัก" },
-        { id: 19, ar: "سَبَحَ", th: "ว่ายน้ำ" },
-        { id: 20, ar: "ذَهَبَ", th: "ไป" },
-        { id: 21, ar: "حَضَرَ", th: "มา" },
-        { id: 22, ar: "رَجَعَ", th: "กลับ" },
-        { id: 23, ar: "صَعِدَ", th: "ขึ้น" },
-        { id: 24, ar: "نَزَلَ", th: "ลง" },
-        { id: 25, ar: "سَقَتَ", th: "ตก" }
+        { id: 26, ar: "فَتَحَ", th: "เปิด" },
+        { id: 27, ar: "غَلَقَ", th: "ปิด" },
+        { id: 28, ar: "لَبِسَ", th: "สวมใส่" },
+        { id: 29, ar: "خَلَعَ", th: "ถอด" },
+        { id: 30, ar: "رَفَعَ", th: "ยก" },
+        { id: 31, ar: "وَضَعَ", th: "วาง" },
+        { id: 32, ar: "سَمِعَ", th: "ได้ยิน" },
+        { id: 33, ar: "فَعَلَ", th: "กระทำ" },
+        { id: 34, ar: "عَمِلَ", th: "ทำงาน" },
+        { id: 35, ar: "جَعَلَ", th: "ทำ, เริ่ม" },
+        { id: 36, ar: "جَمَعَ", th: "รวบรวม" },
+        { id: 37, ar: "سَأَلَ", th: "ขอ, ถาม" },
+        { id: 38, ar: "حَكَمَ", th: "ตัดสิน" },
+        { id: 39, ar: "مَنَحَ", th: "ให้" },
+        { id: 40, ar: "وَهَبَ", th: "ให้" },
+        { id: 41, ar: "قَبِلَ", th: "รับ" },
+        { id: 42, ar: "أَخَذَ", th: "เอา" },
+        { id: 43, ar: "نَظَرَ", th: "มองดู" },
+        { id: 44, ar: "عَقَلَ", th: "ใช้ปัญญา" },
+        { id: 45, ar: "بَصَرَ", th: "มองเห็น, รับรู้" },
+        { id: 46, ar: "رَأَى", th: "เห็น" },
+        { id: 47, ar: "قَرَأَ", th: "อ่าน" },
+        { id: 48, ar: "كَتَبَ", th: "เขียน" },
+        { id: 49, ar: "مَحَا", th: "ลบ" },
+        { id: 50, ar: "مَسَحَ", th: "ลบ, ลูบ" }
     ];
 
     let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
     let isShowingAnswer = false;
-    const totalQuestions = 10; // กำหนดจำนวนข้อต่อรอบ
+    const totalQuestions = 10; // สุ่มมาเล่นทีละ 10 ข้อต่อรอบ
 
     function startQuiz() {
-        // สุ่มเลือกคำศัพท์มาสลับกันและสร้างโจทย์แบบผสม ไทย-อาหรับ
         let shuffled = [...vocabData].sort(() => 0.5 - Math.random());
         currentQuestions = shuffled.slice(0, totalQuestions).map(item => {
-            let isArToTh = Math.random() > 0.5; // สุ่มว่าจะถามอาหรับแปลไทย หรือไทยแปลอาหรับ
+            let isArToTh = Math.random() > 0.5; // สุ่มรูปแบบคำถาม (อาหรับ->ไทย หรือ ไทย->อาหรับ)
             return {
                 word: isArToTh ? item.ar : item.th,
                 correctAnswer: isArToTh ? item.th : item.ar,
@@ -162,10 +161,9 @@
             document.getElementById("action-btn").innerText = "ตรวจคำตอบ";
             isShowingAnswer = false;
         } else {
-            // จบควิซ แสดงคะแนน
             document.getElementById("quiz-box").style.display = "none";
             document.getElementById("score-box").style.display = "block";
-            document.getElementById("progress").innerText = "ทำแบบทดสอบเสร็จแล้ว!";
+            document.getElementById("progress").innerText = "ทำแบบทดสอบเซ็ตนี้เสร็จแล้ว!";
             document.getElementById("final-score").innerText = `คุณได้คะแนน ${score}/${totalQuestions}`;
         }
     }
@@ -177,19 +175,19 @@
         let userAns = document.getElementById("user-answer").value.trim();
 
         if (!isShowingAnswer) {
-            // ตรวจสอบความถูกต้อง (ตัดช่องว่างออกเพื่อให้ตรวจง่ายขึ้น)
+            // ระบบช่วยตรวจความถูกค้องขั้นพื้นฐาน
             let isCorrect = userAns === q.correctAnswer || q.correctAnswer.includes(userAns) && userAns !== "";
             
             if (isCorrect) {
                 resultBox.className = "result correct";
-                resultBox.innerHTML = `ถูกต้อง! 🎉 <br>คำตอบคือ: ${q.correctAnswer}`;
+                resultBox.innerHTML = `ถูกต้องเก่งมาก! 🎉 <br>คำตอบคือ: ${q.correctAnswer}`;
                 score++;
             } else {
                 resultBox.className = "result wrong";
-                resultBox.innerHTML = `ผิดน้า ไม่เป็นไรเก็บใหม่ข้อหน้า! <br>คำตอบที่ถูกคือ: <strong>${q.correctAnswer}</strong>`;
+                resultBox.innerHTML = `ยังไม่ถูกน้า ไม่เป็นไรท่องใหม่ข้อหน้า! <br>เฉลยคำตอบคือ: <strong>${q.correctAnswer}</strong>`;
             }
             resultBox.style.display = "block";
-            actionBtn.innerText = "ข้อถัดไป ->";
+            actionBtn.innerText = "ทำข้อถัดไป ->";
             isShowingAnswer = true;
         } else {
             currentIndex++;
@@ -201,14 +199,13 @@
         startQuiz();
     }
 
-    // กด Enter เพื่อส่งคำตอบได้
+    // รองรับการกด Enter เพื่อตรวจคำตอบ
     document.getElementById("user-answer").addEventListener("keyup", function(event) {
         if (event.key === "Enter") {
             checkAnswer();
         }
     });
 
-    // เริ่มต้นแอปพลิเคชัน
     startQuiz();
 </script>
 
