@@ -156,22 +156,26 @@
     let currentIndex = 0;
     let score = 0;
     let isShowingAnswer = false;
-    const totalQuestions = 25; 
+    const totalQuestions = 13; 
 
-    function startQuiz() {
-        let shuffled = [...vocabData].sort(() => 0.5 - Math.random());
-        currentQuestions = shuffled.map(item => {
-            let isArToTh = Math.random() > 0.5;
-            return {
-                rawData: item,
-                isArToTh: isArToTh,
-                type: isArToTh ? "แปลกลุ่มคำอาหรับนี้เป็นภาษาไทย" : "พิมพ์คำกริยาช่องอดีต (ช่องที่ 1) ให้ตรงกับความหมาย"
-            };
-        });
-        currentIndex = 0;
-        score = 0;
-        isShowingAnswer = false;
-        showQuestion();
+    function startQuiz() { // Take only the first 13 words (ID 51-63) 
+        let first13Words = vocabData.slice(0, 13); // Shuffle them 
+        let shuffled = [...first13Words].sort(() => 0.5 - Math.random()); 
+        currentQuestions = shuffled.map(item => { 
+            let isArToTh = Math.random() > 0.5; 
+            return { 
+                rawData: item, 
+                isArToTh: isArToTh, 
+                type: isArToTh ? 
+                    "แปลกลุ่มคำอาหรับนี้เป็นภาษาไทย" 
+                    : "พิมพ์คำกริยาช่องอดีต (ช่องที่ 1) ให้ตรงกับความหมาย" 
+            }; 
+        }); 
+        
+        currentIndex = 0; 
+        score = 0; 
+        isShowingAnswer = false; 
+        showQuestion(); 
     }
 
     function generateArabicTableHTML(past, present, masdar) {
