@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arabic Quiz App (Custom Range) No-Repeat</title>
+    <title>Arabic Quiz App (51-100) Custom Range</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -163,7 +163,7 @@
 </div>
 
 <script>
-    // ข้อมูลตารางคำศัพท์ลำดับที่ 51-75 ดึงตรงตามรูปภาพจริงที่ส่งมาล่าสุด
+    // ข้อมูลตารางคำศัพท์ลำดับที่ 51-100 อัปเดตครบถ้วนตามโครงสร้างของระบบ
     const vocabData = [
         { id: 51, past: "لَمَسَ", present: "يَلْمِسُ", masdar: "لَمْسٌ", th: "สัมผัส, แตะ" },
         { id: 52, past: "حَفِظَ", present: "يَحْفَظُ", masdar: "حِفْظٌ", th: "ท่องจำ, รักษา" },
@@ -185,11 +185,36 @@
         { id: 68, past: "كَذَبَ", present: "يَكْذِبُ", masdar: "كَذِبٌ", th: "โกหก" },
         { id: 69, past: "خَدَعَ", present: "يَخْدَعُ", masdar: "خَدْعٌ", th: "หลอกลวง" },
         { id: 70, past: "صَانَ", present: "يَصُونُ", masdar: "صِيَانَةٌ", th: "รักษา" },
-        { id: 71, past: "دَخَلَ", present: "يَدْخُلُ", masdar: "ดُخُولٌ", th: "เข้า" },
+        { id: 71, past: "دَخَلَ", present: "يَدْخُلُ", masdar: "دُخُولٌ", th: "เข้า" },
         { id: 72, past: "خَرَجَ", present: "يَخْرُجُ", masdar: "خُرُوجٌ", th: "ออก" },
         { id: 73, past: "ضَحِكَ", present: "يَضْحَكُ", masdar: "ضَحِكٌ", th: "หัวเราะ" },
         { id: 74, past: "بَكَى", present: "يَبْكِي", masdar: "بُكَاءٌ", th: "ร้องให้" },
-        { id: 75, past: "غَضِبَ", present: "يَغْضَبُ", masdar: "غَضَبٌ", th: "โกรธ" }
+        { id: 75, past: "غَضِبَ", present: "يَغْضَبُ", masdar: "غَضَبٌ", th: "โกรธ" },
+        { id: 76, past: "حَزِنَ", present: "يَحْزَنُ", masdar: "حُزْن", th: "เสียใจ" },
+        { id: 77, past: "هَمَّ", present: "يَهُمُّ", masdar: "هَمّ", th: "กลุ้มใจ" },
+        { id: 78, past: "يَئِسَ", present: "يَيْأَسُ", masdar: "يَأْس", th: "สิ้นหวัง" },
+        { id: 79, past: "رَجَا", present: "يَرْجُو", masdar: "رَجَاء", th: "มีความหวัง" },
+        { id: 80, past: "شَكَّ", present: "يَشُكُّ", masdar: "شَكّ", th: "สงสัย" },
+        { id: 81, past: "ظَنَّ", present: "يَظُنُّ", masdar: "ظَنّ", th: "คาดเดา" },
+        { id: 82, past: "حَسِبَ", present: "يَحْسَبُ", masdar: "حُسْبَان", th: "คาดคิด" },
+        { id: 83, past: "وَهَمَ", present: "يَهِمُ", masdar: "وَهْم", th: "มโน, ทึกทัก" },
+        { id: 84, past: "وَهِمَ", present: "يَوْهَمُ", masdar: "وَهَم", th: "ผิดพลาด, หลงลืม" },
+        { id: 85, past: "فَرِحَ", present: "يَفْرَحُ", masdar: "فَرَح", th: "ดีใจ" },
+        { id: 86, past: "رَضِيَ", present: "يَرْضَى", masdar: "رِضًا", th: "พอใจ" },
+        { id: 87, past: "كَرِهَ", present: "يَكَْهُ", masdar: "كَرَاهَة", th: "รังเกียจ" },
+        { id: 88, past: "بَغَضَ", present: "يَبْغَضُ", masdar: "بُغْض", th: "เกลียดชัง" },
+        { id: 89, past: "رَغِبَ", present: "يَرْغَبُ", masdar: "رَغْبَة", th: "ปรารถนา" },
+        { id: 90, past: "رَفَضَ", present: "يَرْفَضُ", masdar: "رَفْض", th: "ปฏิเสธ" },
+        { id: 91, past: "كَفَرَ", present: "يَكْفُرُ", masdar: "كُفْر", th: "ปฏิเสธศาสนา, ネรคุณ" },
+        { id: 92, past: "أَمَرَ", present: "يَأْمُرُ", masdar: "أَمْر", th: "สั่งใช้" },
+        { id: 93, past: "نَهَى", present: "يَنْهَى", masdar: "نَهْي", th: "ห้าม" },
+        { id: 94, past: "ضَاعَ", present: "يَضُوعُ", masdar: "ضَوْع", th: "ฟุ้งกระจาย" },
+        { id: 95, past: "ضَاعَ", present: "يَضِيعُ", masdar: "ضَيَاع", th: "สูญหาย" },
+        { id: 96, past: "طَلَبَ", present: "يَطْلُبُ", masdar: "طَلَب", th: "แสวงหา" },
+        { id: 97, past: "بَحَثَ", present: "يَبْحَثُ", masdar: "بَحْث", th: "ค้นหา" },
+        { id: 98, past: "وَجَدَ", present: "يَجِدُ", masdar: "وُجُود", th: "พบเจอ" },
+        { id: 99, past: "رَدَّ", present: "يَرُدُّ", masdar: "رَدّ", th: "โต้ตอบ" },
+        { id: 100, past: "غَرَسَ", present: "يَغْرِسُ", masdar: "غَرْس", th: "ปลูก" }
     ];
 
     let currentQuestions = [];
@@ -213,7 +238,7 @@
         // กำหนดค่าเริ่มต้นให้กับกล่องเลือกตัวเลือกสุดท้าย
         updateEndWordOptions();
         
-        // เลือกค่าสิ้นสุดเป็นคำสุดท้ายของข้อมูลไว้เป็น Default
+        // เลือกค่าสิ้นสุดเป็นคำสุดท้ายของข้อมูล (คำที่ 100) ไว้เป็น Default
         document.getElementById("end-word").value = vocabData[vocabData.length - 1].id;
     }
 
@@ -244,7 +269,7 @@
         const startId = parseInt(document.getElementById("start-word").value);
         const endId = parseInt(document.getElementById("end-word").value);
 
-        // กรองคำศัพท์เฉพาะช่วงที่เลือก
+        // กรองคำศัพท์เฉพาะช่วงที่เลือก (รองรับขอบเขตสูงสุดถึงข้อ 100)
         let selectedWords = vocabData.filter(item => item.id >= startId && item.id <= endId);
         
         // อัปเดตจำนวนข้อควิซตามช่วงที่เลือกจริง
@@ -381,7 +406,6 @@
 
     document.getElementById("user-answer").addEventListener("keyup", function(event) {
         if (event.key === "Enter") {
-            // ป้องกันการทำข้อถัดไปทันทีหากควิซจบลงแล้ว
             if(currentIndex < totalQuestions || !isShowingAnswer) {
                 checkAnswer();
             }
